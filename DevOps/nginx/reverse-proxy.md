@@ -1,14 +1,14 @@
-# 🚀 Nginx Reverse Proxy + SSL Setup Guide
+# 🚀 Nginx Reverse Proxy Setup Guide
 
-This guide explains how to set up multiple domains on a single server using **Nginx** as a reverse proxy, and enable **free SSL (HTTPS)** with **Certbot (Let’s Encrypt)**.
+This guide explains how to set up multiple domains on a single server using **Nginx** as a reverse proxy.
 
 ---
 
-## 🧩 1. Install Nginx and Certbot
+## 🧩 1. Install Nginx
 
 ```bash
 sudo apt update
-sudo apt install nginx certbot python3-certbot-nginx -y
+sudo apt install nginx -y
 ```
 
 ---
@@ -102,56 +102,7 @@ sudo systemctl reload nginx
 
 ---
 
-## 🔐 5. Enable SSL (HTTPS)
-
-Run Certbot for all your domains:
-
-```bash
-sudo certbot --nginx -d example.com -d www.example.com -d example2.com -d www.example2.com
-```
-
-Follow the prompts:
-- Enter your email
-- Agree to terms
-- Choose **Redirect all HTTP to HTTPS**
-
----
-
-## 🧾 6. Verify and Test
-
-Check syntax and reload Nginx:
-
-```bash
-sudo nginx -t
-sudo systemctl reload nginx
-```
-
-Then visit:
-- https://example.com  
-- https://example2.com  
-
-Both should show a secure lock 🔒
-
----
-
-## ♻️ 7. Auto-Renew SSL Certificates
-
-Certbot automatically renews certificates.  
-To test renewal manually:
-
-```bash
-sudo certbot renew --dry-run
-```
-
-To view existing certificates:
-
-```bash
-sudo certbot certificates
-```
-
----
-
-## 🧰 8. Useful Commands
+## 🧰 5. Useful Commands
 
 | Purpose | Command |
 |----------|----------|
@@ -159,7 +110,6 @@ sudo certbot certificates
 | Reload Nginx | `sudo systemctl reload nginx` |
 | Restart Nginx | `sudo systemctl restart nginx` |
 | Check logs | `sudo tail -f /var/log/nginx/error.log` |
-| View Certbot certificates | `sudo certbot certificates` |
 
 ---
 
